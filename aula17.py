@@ -21,4 +21,7 @@ while (x < L):
     x += 0.005
 
 plt.plot(xs, temp)
+plt.xlabel('Posição(m)')
+plt.ylabel('Temperatura(K)')
+plt.title('Gráfico temperatura x posição')
 plt.show()
