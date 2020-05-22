@@ -12,7 +12,7 @@ tempo = 1
 tempos = np.arange(0, tempo+delta_t, delta_t)
 erro = np.zeros([6,6])
 matriz = np.zeros([6,6])
-for i in range (0, 6):
+for i in range (1, 5):
     matriz[0, i] = 100
 
 const = alpha*delta_t/(delta_c**2)
