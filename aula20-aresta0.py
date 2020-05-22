@@ -10,7 +10,7 @@ flag = True
 comprimento = 0.4
 delta_c = 0.4/9
 delta_t = 1e-3
-tempo = 120
+tempo = 10
 tamanho = 10
 # tarefa 1: O significado do termo é a variação de temperatura na borda e na mesma altura na direcao x
 #digite 0 para a da esquerda, 1 para a de cima, 2 para a da direita e 3 para a de  baixo
@@ -23,9 +23,9 @@ for i in range (0, tamanho):
     #para a de cima
     matriz[0, i] = 150
     #para a da direito 
-    matriz[i, tamanho-1] = 50
+    matriz[i, tamanho-1] = 100
     #para a da esquerda 
-    #matriz[i, 0] = 150
+    #matriz[i, 0] = 75
     #para a de baixo 
     #matriz[tamanho-1, i] = 150
 
@@ -45,6 +45,8 @@ for temp in tempos:
             else:
                 matriz_temp[i,j] = const*(matriz[i+1,j] + matriz[i-1,j] + matriz[i,j+1] + matriz[i,j-1]) + matriz[i,j]*(1 - 4*const)
 
+            erro[i,j] = abs((matriz_temp[i,j]-matriz[i,j])/matriz_temp[i,j])
+            
     matriz = np.copy(matriz_temp)
 
 
@@ -52,6 +54,7 @@ lista = []
 for i in range(0, tamanho):
     lista.append(matriz[i,0])
 print(lista)
+print(erro)
 print("O tempo necessario foi", temp)
 plt.matshow(matriz_temp)
 plt.colorbar()
