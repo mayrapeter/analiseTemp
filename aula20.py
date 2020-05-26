@@ -31,7 +31,7 @@ for i in range (0, tamanho):
 
 
 const = alpha*delta_t/(delta_c**2)
-
+print(const)
 matriz_temp = np.copy(matriz)
 
 for temp in tempos:

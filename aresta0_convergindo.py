@@ -6,7 +6,7 @@ k = 230
 c = 897
 dens = 2.7 * 1e3
 alpha = k/(dens*c)
-flag = True
+flag = False
 comprimento = 0.4
 delta_c = 0.4/9
 delta_t = 1e-3
@@ -37,23 +37,26 @@ matriz_temp = np.copy(matriz)
 
 
 for temp in tempos:
-    for i in range(1, tamanho-1):
-        for j in range (0, tamanho-1):
-            if j == 0:
-                matriz_temp[i,j] = const*(matriz[i+1,j] + 2*matriz[i,j+1] + matriz[i-1, j]) + matriz[i,j]*(1 - 4*const)
-            else:
-                matriz_temp[i,j] = const*(matriz[i+1,j] + matriz[i-1,j] + matriz[i,j+1] + matriz[i,j-1]) + matriz[i,j]*(1 - 4*const)
-
-            erro[i,j] = abs((matriz_temp[i,j]-matriz[i,j])/matriz_temp[i,j])
-            
-    matriz = np.copy(matriz_temp)
+    if (not flag):
+        flag = True
+        for i in range(1, tamanho-1):
+            for j in range (0, tamanho-1):
+                if j == 0:
+                    matriz_temp[i,j] = const*(matriz[i+1,j] + 2*matriz[i,j+1] + matriz[i-1, j]) + matriz[i,j]*(1 - 4*const)
+                else:
+                    matriz_temp[i,j] = const*(matriz[i+1,j] + matriz[i-1,j] + matriz[i,j+1] + matriz[i,j-1]) + matriz[i,j]*(1 - 4*const)
+                erro[i,j] = abs((matriz_temp[i,j]-matriz[i,j])/matriz_temp[i,j])
+                if erro[i,j] > 10e-8:
+                    flag = False
+        matriz = np.copy(matriz_temp)
+    else:
+        break
 
 
 lista = []
 for i in range(0, tamanho):
     lista.append(matriz[i,0])
 print(lista)
-
 print("O tempo necessario foi", temp)
 plt.matshow(matriz_temp)
 plt.colorbar()
