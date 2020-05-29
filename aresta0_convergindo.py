@@ -4,11 +4,13 @@ import math
 
 k = 230
 c = 897
-dens = 2.7 * 1e3
+dens = 2700
 alpha = k/(dens*c)
+comprimento = 0.6
+delta_c = 0.1
 flag = False
-comprimento = 0.4
-delta_c = 0.4/9
+delta_t = 0.5*(delta_c**2)/k
+print("O DELTA T CERTO É",delta_t)
 delta_t = 1e-3
 tempo = 10
 tamanho = 10
