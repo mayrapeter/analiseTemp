@@ -5,17 +5,18 @@ import matplotlib.pyplot as plt
 
 flag = False
 alpha = 0
-u = alpha
+alpha_v = 0
+u = 1
 K = 1
-delta_c = 1
-delta_t = 0.2
-Q_ponto = 100 
-tempo_desp = 3 
-tempo = 2 - 3*delta_t
-a = 3
-b = 9
+delta_c = 0.5
+delta_t = 0.05
+Q_ponto = 80
+tempo_desp = 2
+tempo = 5
+a = 15
+b = 15
 Lx = 30
-Ly = 20
+Ly = 30
 q = Q_ponto/(delta_c**2)
 tempos = np.arange(0, tempo+delta_t, delta_t)
 tamanho_x = int(1+Lx/delta_c)
@@ -45,8 +46,8 @@ for temp in tempos:
             if C_temp[i,j] < 0:
                 C_temp[i,j] = 0
     C = np.copy(C_temp)
-
-print("O elemento e ", C[15][10])
+#print("O tempo esta", temp)
+print("O elemento e ", C[40][40])
 plt.matshow(C)
 plt.colorbar()
 plt.show()
